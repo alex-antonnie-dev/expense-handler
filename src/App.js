@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import Expenses from './components/Expenses';
 import './components/Expenses.css';
-import ExpensesFilter from './components/ExpensesFilter';
-import NewExpense from './components/NewExpense/NewExpense';
-import Card from './components/Card';
 
+import NewExpense from './components/NewExpense/NewExpense';
+// import Card from './components/Card';
+const dummy_expenses = [
+  {'id' : '1','title' : 'Car insurance', 'amount' : 100, 'date' : new Date()},
+  {'id' : '2','title' : 'Rent', 'amount' : 1000, 'date' : new Date()},
+  {'id' : '3','title' : 'Food', 'amount' : 200, 'date' : new Date()},
+  {'id' : '4','title' : 'Gas', 'amount' : 50, 'date' : new Date()}
+];
 
 function App() {
+  const [expenses, setExpenses]     = useState(dummy_expenses);
   const [filterYear, SetFilterYear] = useState('2021');
-  const expense = [
-    {'title' : 'Car insurance', 'amount' : 100, 'date' : new Date()},
-    {'title' : 'Rent', 'amount' : 1000, 'date' : new Date()},
-    {'title' : 'Food', 'amount' : 200, 'date' : new Date()},
-    {'title' : 'Gas', 'amount' : 50, 'date' : new Date()}
-  ];
+  
   
   // return React.createElement(
   //   'div', {},
@@ -25,25 +26,27 @@ function App() {
   // )
 
   const addExpenseHandler = expense => {
-    console.log('app', expense);
+    // const exp = [...expenses, expense];
+    setExpenses((previousExp) => ( [...previousExp, expense]));
+    // console.log('app', exp);
   }
 
-  const expenseFilterChange = filteredYear => {
-    SetFilterYear(filteredYear);
-  }
+  
 
   return (
     <div>
       <NewExpense onAddExpenseData={addExpenseHandler}/>
       
-      <Card className='expenses'>
+      <Expenses expenses={expenses}/>
+
+      {/* <Card className='expenses'>
         <ExpensesFilter filterYear={filterYear} onExpenseFilterChange={expenseFilterChange}/>
       {
         expense.map( (exp) => {
           return <Expenses expense={exp} filterYear={filterYear}/>
         })
       }
-      </Card>
+      </Card> */}
       {/* <Expenses expense={expense[0]}/>
       <Expenses expense={expense[1]}/>
       <Expenses expense={expense[2]}/>
