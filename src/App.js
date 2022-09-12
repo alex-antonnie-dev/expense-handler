@@ -36,21 +36,7 @@ function App() {
   return (
     <div>
       <NewExpense onAddExpenseData={addExpenseHandler}/>
-      
-      <Expenses expenses={expenses}/>
-
-      {/* <Card className='expenses'>
-        <ExpensesFilter filterYear={filterYear} onExpenseFilterChange={expenseFilterChange}/>
-      {
-        expense.map( (exp) => {
-          return <Expenses expense={exp} filterYear={filterYear}/>
-        })
-      }
-      </Card> */}
-      {/* <Expenses expense={expense[0]}/>
-      <Expenses expense={expense[1]}/>
-      <Expenses expense={expense[2]}/>
-      <Expenses expense={expense[3]}/> */}
+      <Expenses expenses={expenses} setExpenses={setExpenses}/>
     </div>
   );
 }
